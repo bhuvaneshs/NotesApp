@@ -8,17 +8,17 @@
               <p class="text-muted" style="text-align:center">Create your account</p>
               <div class="input-group mb-3">
                 <span class="input-group-addon"><i class="icon-user"></i></span>
-                <input type="text" class="form-control" placeholder="Username">
+                <input type="text" [(ngModel)]="registerData.username" class="form-control" placeholder="Username">
               </div>
   
               <div class="input-group mb-3">
                 <span class="input-group-addon">@</span>
-                <input type="text" class="form-control" placeholder="Email">
+                <input type="email" [(ngModel)]="registerData.email"  class="form-control" placeholder="Email">
               </div>
   
               <div class="input-group mb-3">
                 <span class="input-group-addon"><i class="icon-lock"></i></span>
-                <input type="password" class="form-control" placeholder="Password">
+                <input type="password" [(ngModel)]="registerData.pwd" class="form-control" placeholder="Password">
               </div>
   
               <div class="input-group mb-4">
@@ -26,7 +26,7 @@
                 <input type="password" class="form-control" placeholder="Repeat password">
               </div>
   
-              <button type="button" class="btn btn-block btn-success">Create Account</button>
+              <button type="button" (click)="doRegister()" class="btn btn-block btn-success">Create Account</button>
             </div>
             <div><p style="text-align:center">Already have an account ? <a href="#" [routerLink]="['/login']" routerLinkActive="active">Login Here</a></p></div>
             <!-- <div class="card-footer p-4">
