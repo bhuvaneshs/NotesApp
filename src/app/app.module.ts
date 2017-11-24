@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app.routing';
-import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app.routing';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 // Components
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
@@ -25,8 +26,9 @@ import { AuthInterceptorService } from './services/authinterceptor.service';
   imports: [
     BrowserModule,
     HttpModule,
-    HttpClientModule,
     FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [AuthService, {provide : HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
