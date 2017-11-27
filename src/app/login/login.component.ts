@@ -11,6 +11,8 @@ import { AuthService } from '../services/auth.service';
 export class LoginComponent implements  OnInit {
     @ViewChild('email') el: ElementRef;
     lForm: FormGroup;
+    loginError = false;
+    returnUrl: string;
 
     constructor(private route: ActivatedRoute,
         private authService: AuthService,
@@ -23,10 +25,21 @@ export class LoginComponent implements  OnInit {
         }
 
     onLogin(data) {
-        console.log(data);
-        this.authService.loginUser(data);
+        this.authService.loginUser(data).subscribe(res => {
+            let responseData  = res;
+            if (responseData.status === 200) {
+             this.router.navigate([this.returnUrl]);
+            } else {
+             this.loginError = true;
+            }
+        });
     }
     ngOnInit() {
-        // this.authService.logout();
+        if (this.authService.isLoggedIn() ===  true) {
+        return this.router.navigate(['/index']);
+        } else {
+        this.authService.logout();
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/index';
+        }
     }
 }

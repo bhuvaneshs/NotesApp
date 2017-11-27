@@ -11,9 +11,12 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from '../app/navigation/header/header.component';
 import { NavComponent } from '../app/navigation/nav.component';
+import { IndexComponent } from '../app/index/index.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 // Services
 import { AuthService } from './services/auth.service';
 import { AuthInterceptorService } from './services/authinterceptor.service';
+import { AuthguardService } from './services/authguard.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,9 @@ import { AuthInterceptorService } from './services/authinterceptor.service';
     RegisterComponent,
     LoginComponent,
     HeaderComponent,
-    NavComponent
+    NavComponent,
+    IndexComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,7 @@ import { AuthInterceptorService } from './services/authinterceptor.service';
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [AuthService, {provide : HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
+  providers: [AuthService, AuthguardService , {provide : HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
